@@ -30,8 +30,8 @@ import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 
-import wang.zhanwei.clangformat.plugin.ClangFormat.Replacement;
-import wang.zhanwei.clangformat.plugin.ClangFormat.Replacements;
+import io.probst.idea.clangformat.clangformatij.plugin.ClangFormat.Replacement;
+import io.probst.idea.clangformat.clangformatij.plugin.ClangFormat.Replacements;
 
 
 /********************************************************************
