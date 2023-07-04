@@ -3,7 +3,7 @@
 //# Copyright (c) 1996-2023 by freenet DLS GmbH
 //# All rights reserved.
 //#***************************************************************************
-package io.probst.clangformat.plugin;
+package io.probst.idea.clangformat.clangformatij.plugin;
 
 import java.io.File;
 import java.io.IOException;
