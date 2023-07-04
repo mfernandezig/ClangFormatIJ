@@ -1,12 +1,14 @@
-package io.probst.idea.clangformat;
+package wang.zhanwei.clangformat.plugin;
 
-import com.google.common.base.Objects;
 import com.intellij.ide.util.PropertiesComponent;
+import lombok.Getter;
 
+@Getter
 public class Settings {
-  private static final String CF_BINARY_PROP = ClangFormatConfigurable.class.getName() + ".clangFormatBinary";
-  private static final String CF_PATH_PROP = ClangFormatConfigurable.class.getName() + ".path";
-  private static final String CF_VCS_FORMAT_PROP = ClangFormatConfigurable.class.getName() + ".vcs_format";
+  static final String CF_BINARY_PROP =
+      ClangFormatConfigurable.class.getName() + ".clangFormatBinary";
+  static final String CF_PATH_PROP = ClangFormatConfigurable.class.getName() + ".path";
+  static final String CF_VCS_FORMAT_PROP = ClangFormatConfigurable.class.getName() + ".vcs_format";
 
   final String clangFormatBinary;
   final String path;
@@ -20,9 +22,11 @@ public class Settings {
     if ("".equals(clangFormatBinary)) {
       clangFormatBinary = "clang-format";
     }
+
     if ("".equals(path)) {
       path = null;
     }
+
     PropertiesComponent props = PropertiesComponent.getInstance();
     props.setValue(CF_BINARY_PROP, clangFormatBinary, "clang-format");
     props.setValue(CF_PATH_PROP, path, null);
@@ -30,7 +34,7 @@ public class Settings {
     return get();
   }
 
-  private Settings() {
+  Settings() {
     PropertiesComponent props = PropertiesComponent.getInstance();
     clangFormatBinary = props.getValue(CF_BINARY_PROP, "clang-format");
     path = props.getValue(CF_PATH_PROP);
