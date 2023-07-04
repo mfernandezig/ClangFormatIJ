@@ -1,0 +1,66 @@
+<idea-plugin version="2">
+  <id>io.probst.idea.clangformat</id>
+  <name>ClangFormatIJ</name>
+  <version>1.1.0</version>
+  <vendor email="martin@probst.io" url="http://www.probst.io">Martin Probst</vendor>
+
+  <description><![CDATA[
+    <p>Runs <code>clang-format</code> on the statement or selection.</p>
+    <p><code>clang-format</code> is a versatile and beautiful formatter for C++, proto, Java,
+      JavaScript, and TypeScript.</p>
+    <p>This plugin does not contain <code>clang-format</code> itself, you must install it separately.
+      <code>clang-format</code> is available in e.g. npm, or homebrew for Mac. This plugin also
+      has no configuration, please use the regular <code>.clang-format</code> mechanism.</p>
+    <p>If you are using Mac OS X and have trouble getting it to run, please make sure to set your
+      PATH environment in $HOME/.profile. Mac OS X seems to ignore $HOME/.bash_profile for
+      applications launched from the Finder.</p>
+    ]]>
+  </description>
+
+  <change-notes><![CDATA[
+    <ul>
+      <li><b>1.0.8</b> - Pass -style=file to clang-format.</li>
+      <li><b>1.0.7</b> - Change the default keybinding to Ctrl/Cmd-Alt-K, which doesn't conflict
+        with known existing bindings.</li>
+      <li><b>1.0.6</b> - Search the PATH for the binary.</li>
+      <li><b>1.0.5</b> - Use a login shell to find PATH on Mac OS, add a config panel.</li>
+      <li><b>1.0.4</b> - Drop crazy PATH logic, recommend $HOME/.profile to users.</li>
+      <li><b>1.0.3</b> - Fix location math, add logic to find binary on MacOS X.</li>
+      <li><b>1.0.2</b> - Use the full file path, so that clang-format picks up the correct
+        configuration file.</li>
+      <li><b>1.0.1</b> - Fix description.</li>
+      <li><b>1.0</b> - Initial version.</li>
+    </ul>
+    ]]>
+  </change-notes>
+
+  <idea-version since-build="141.0"/>
+  <!-- enabled in all products -->
+  <depends>com.intellij.modules.lang</depends>
+
+  <actions>
+    <action id="ClangFormat.ClangFormat" class="io.probst.idea.clangformat.ClangFormatAction"
+            text="Reformat Current Statement with clang-format"
+            description="Runs clang-format on the current statement or selection">
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+
+      <keyboard-shortcut keymap="Mac OS X" first-keystroke="control alt K"/>
+      <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta alt K"/>
+      <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="meta alt K"/>
+    </action>
+    <action id="ClangFormat.ClangFormatFile" class="io.probst.idea.clangformat.ClangFormatFileAction"
+            text="Reformat File with clang-format"
+            description="Runs clang-format on the current file">
+    </action>
+    <action id="ClangFormat.ClangFormatAuto" class="io.probst.idea.clangformat.ClangFormatAutoAction"
+            text="Reformat Code with clang-format"
+            description="Runs clang-format on the current file or selection">
+      <add-to-group group-id="CodeFormatGroup" anchor="after" relative-to-action="ReformatCode"/>
+    </action>
+  </actions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationConfigurable groupId="tools" instance="io.probst.idea.clangformat.ClangFormatConfigurable"/>
+  </extensions>
+
+</idea-plugin>

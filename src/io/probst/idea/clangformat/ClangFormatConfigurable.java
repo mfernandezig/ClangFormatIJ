@@ -1,14 +1,15 @@
-package wang.zhanwei.clangformat.plugin;
+package io.probst.idea.clangformat;
 
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
-import java.util.Objects;
+import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.Nullable;
+
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import org.jetbrains.annotations.Nls;
-import org.jetbrains.annotations.Nullable;
+import java.util.Objects;
 
 /**
  * ClangFormatConfigurable provides UI to configure {@link Settings} for the clang-format plugin.
@@ -44,14 +45,12 @@ public class ClangFormatConfigurable implements Configurable {
   public boolean isModified() {
     return !Objects.equals(settings.clangFormatBinary, clangFormatBinary.getText())
         || !Objects.equals(settings.path, path.getText())
-        || !Objects.equals(
-            settings.updateOnlyChangedText, formatOnlyChangedTextCheckBox.isSelected());
+        || !Objects.equals(settings.updateOnlyChangedText, formatOnlyChangedTextCheckBox.isSelected());
   }
 
   @Override
   public void apply() throws ConfigurationException {
-    settings = Settings.update(
-        clangFormatBinary.getText(), path.getText(), formatOnlyChangedTextCheckBox.isSelected());
+    settings = Settings.update(clangFormatBinary.getText(), path.getText(), formatOnlyChangedTextCheckBox.isSelected());
   }
 
   @Override
@@ -61,6 +60,6 @@ public class ClangFormatConfigurable implements Configurable {
     formatOnlyChangedTextCheckBox.setSelected(settings.updateOnlyChangedText);
   }
 
-  @Override public void disposeUIResources() { /* empty */
-  }
+  @Override
+  public void disposeUIResources() { /* empty */ }
 }
